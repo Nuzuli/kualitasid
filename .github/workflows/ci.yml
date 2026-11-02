@@ -30,8 +30,9 @@ jobs:
 
       - name: Debug package layout
         run: |
+          git ls-files | grep -E "__init__|kualitasid" || true
           ls -la src/kualitasid
-          python -c "import kualitasid; print(kualitasid.__file__)"
+          python -c "import kualitasid; print(kualitasid.__file__, list(kualitasid.__path__))"
 
       - name: Lint with ruff
         run: ruff check src tests
