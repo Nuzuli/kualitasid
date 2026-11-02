@@ -39,3 +39,7 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://github.com/Nuzuli/kualitasid"
+Issues = "https://github.com/Nuzuli/kualitasid/issues"
