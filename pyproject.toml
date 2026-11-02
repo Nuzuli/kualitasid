@@ -30,5 +30,8 @@ where = ["src"]
 [tool.ruff]
 line-length = 100
 
+[tool.ruff.lint]
+select = ["E", "F"]
+
 [tool.mypy]
 ignore_missing_imports = true
