@@ -105,11 +105,9 @@ def parse_tanggal(v) -> Optional[date]:
             r = re.fullmatch(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})", s)
             if r:
                 y, m, d = int(r.group(1)), int(r.group(2)), int(r.group(3))
-            if d is None or m is None or y is None:
+    if d is None or m is None or y is None:
         return None
-    if y < 100: 
-        
-  
+    if y < 100:
         y += 2000 if y < 50 else 1900
     try:
         return date(y, m, d)
