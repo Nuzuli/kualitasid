@@ -1,18 +1,18 @@
 import argparse
 import sys
 
-import pandas as pd
-
 from .laporan import ke_html, ke_json
 from .profiler import bersihkan, profil, teks
+from .tabel import BacaError, baca_tabel
 
 
 def main(argv=None):
     p = argparse.ArgumentParser(
-        prog="kualitasid", description="Cek kualitas data CSV format Indonesia"
+        prog="kualitasid", description="Cek kualitas data CSV/Excel format Indonesia"
     )
-    p.add_argument("csv", help="path file CSV")
-    p.add_argument("--sep", default=",", help="pemisah kolom (default ',')")
+    p.add_argument("csv", help="path file CSV atau Excel (.xlsx)")
+    p.add_argument("--sep", default=",", help="pemisah kolom CSV (default ',')")
+    p.add_argument("--sheet", help="nama lembar Excel (default: lembar pertama)")
     p.add_argument("--json", action="store_true", help="cetak laporan sebagai JSON")
     p.add_argument("--html", metavar="OUT", help="simpan laporan HTML ke file ini")
     p.add_argument("--bersihkan", metavar="OUT", help="simpan versi bersih ke CSV ini")
@@ -22,9 +22,9 @@ def main(argv=None):
     )
     a = p.parse_args(argv)
     try:
-        df = pd.read_csv(a.csv, sep=a.sep, dtype=str)
-    except (OSError, pd.errors.ParserError, pd.errors.EmptyDataError) as error:
-        print(f"Error: tidak bisa membaca {a.csv}: {error}", file=sys.stderr)
+        df = baca_tabel(a.csv, sep=a.sep, sheet=a.sheet)
+    except BacaError as error:
+        print(f"Error: {error}", file=sys.stderr)
         return 2
     laporan = profil(df, samarkan=not a.tanpa_samar)
     print(ke_json(laporan) if a.json else teks(laporan))
