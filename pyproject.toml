@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kualitasid"
-version = "0.2.0"
+version =  "0.3.0"
 description = "Profil dan pembersih kualitas data (pandas) untuk format Indonesia: NIK, NPWP, HP, Rupiah, tanggal, plat, provinsi, plus cek konsistensi antar kolom"
 readme = "README.md"
 license = { text = "MIT" }
