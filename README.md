@@ -1,21 +1,10 @@
 # kualitasid 🇮🇩
 
-[
-
-![CI](https://github.com/Nuzuli/kualitasid/actions/workflows/ci.yml/badge.svg)
-
-](https://github.com/Nuzuli/kualitasid/actions/workflows/ci.yml)
-[
-
-![PyPI](https://img.shields.io/pypi/v/kualitasid)
-
-](https://pypi.org/project/kualitasid/)
-[
-
-![Python](https://img.shields.io/pypi/pyversions/kualitasid)
-
-](https://pypi.org/project/kualitasid/)
-
+<p>
+  <a href="https://github.com/Nuzuli/kualitasid/actions/workflows/ci.yml"><img src="https://github.com/Nuzuli/kualitasid/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://pypi.org/project/kualitasid/"><img src="https://img.shields.io/pypi/v/kualitasid" alt="PyPI"></a>
+  <a href="https://pypi.org/project/kualitasid/"><img src="https://img.shields.io/pypi/pyversions/kualitasid" alt="Python"></a>
+</p>
 
 Profil dan pembersih kualitas data **untuk DataFrame/CSV berformat Indonesia**. Yang dikerjakan di
 level kolom dan baris, bukan hanya satu nilai:
@@ -37,13 +26,13 @@ kualitasid data_saya.csv --html laporan.html --bersihkan bersih.csv
 
 Untuk mencoba dengan data fiktif, unduh
 [`examples/data_kotor.csv`](https://github.com/Nuzuli/kualitasid/blob/main/examples/data_kotor.csv)
-dari repo ini.
+dari repo ini dan simpan sebagai `data_kotor.csv`.
 
 ```python
 import pandas as pd
 from kualitasid import profil, bersihkan, teks
 
-df = pd.read_csv("examples/data_kotor.csv", dtype=str)
+df = pd.read_csv("data_kotor.csv", dtype=str)
 laporan = profil(df)        # NIK/NPWP/HP pada contoh disamarkan secara bawaan
 print(teks(laporan))
 df_bersih = bersihkan(df)
@@ -55,9 +44,7 @@ Cuplikan keluaran:
 Konsistensi antar kolom: 2 masalah di 2 baris
 - baris 1: nik_jenis_kelamin (NIK 317101******0002, nilai=Laki-laki, menurut NIK=P)
 - baris 2: nik_tanggal_lahir (NIK 327301******0004, nilai=16-03-1985, menurut NIK=15-03-xx85)
-
 ```
-
 
 ## Batasan (penting)
 
@@ -78,6 +65,8 @@ teks bebas, pustaka seperti [`lokal-id`](https://pypi.org/project/lokal-id/),
 ## Pengembangan
 
 ```bash
+git clone https://github.com/Nuzuli/kualitasid.git
+cd kualitasid
 pip install -e ".[dev]"
 python -m pytest tests/ -v --cov=kualitasid
 ruff check src tests && mypy src
