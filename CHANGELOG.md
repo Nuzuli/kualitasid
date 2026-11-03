@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.0] - 2026-11-05
+
+### Added
+
+- Excel input: `kualitasid data.xlsx` reads the first sheet, and `--sheet NAME` picks another one. Install with `pip install "kualitasid[excel]"`.
+- `kualitasid.tabel.baca_tabel()` reads CSV or Excel into a text-only DataFrame.
+- Clear errors (exit code 2) for a missing sheet, an invalid `.xlsx`, the old `.xls` format, and a missing `openpyxl`.
+
 ## [0.2.0] - 2026-11-02
 
 ### Added
