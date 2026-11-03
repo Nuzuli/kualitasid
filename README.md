@@ -9,7 +9,7 @@
 Profil dan pembersih kualitas data **untuk DataFrame/CSV berformat Indonesia**. Yang dikerjakan di
 level kolom dan baris, bukan hanya satu nilai:
 
-- mendeteksi tipe tiap kolom (NIK, NPWP, HP, tanggal, Rupiah, plat, provinsi),
+- mendeteksi tipe tiap kolom (NIK, NPWP, HP, tanggal, Rupiah, plat, provinsiu),
 - menghitung skor kualitas 0-100 dan melaporkan nilai tidak valid, kosong, duplikat, spasi berlebih,
 - **memeriksa konsistensi antar kolom**: NIK vs tanggal lahir dan jenis kelamin,
 - membersihkan otomatis (`Rp 1,5 jt` → `1500000`, `0812-3456-7890` → `+6281234567890`),
@@ -46,6 +46,20 @@ Konsistensi antar kolom: 2 masalah di 2 baris
 - baris 2: nik_tanggal_lahir (NIK 327301******0004, nilai=16-03-1985, menurut NIK=15-03-xx85)
 ```
 
+## Excel (.xlsx)
+
+```bash
+pip install "kualitasid[excel]"
+kualitasid data.xlsx --sheet "Data 2026" --html laporan.html
+```
+
+Tanpa `--sheet`, lembar pertama yang dibaca. Format `.xls` lama tidak didukung; simpan ulang sebagai
+`.xlsx` atau CSV.
+
+Format kolom NIK, NPWP, dan nomor HP sebagai **Teks** di Excel sebelum menyimpan. Excel memotong
+angka yang lebih dari 15 digit dan menghapus angka 0 di depan nomor yang disimpan sebagai angka.
+Kerusakan itu sudah terjadi di file sumber dan tidak bisa dipulihkan oleh `kualitasid`.
+
 ## Batasan (penting)
 
 - Validasi NIK dan NPWP hanya **struktur**, bukan bukti orangnya ada. Kode wilayah di bawah provinsi
@@ -53,6 +67,8 @@ Konsistensi antar kolom: 2 masalah di 2 baris
 - Provinsi di NIK adalah tempat pendaftaran, jadi kolom provinsi **tidak** dibandingkan dengan NIK.
 - Tahun di NIK hanya 2 digit, jadi abad tidak diperiksa.
 - Jangan unggah data pribadi asli ke repo publik. Contoh di `examples/` fiktif.
+- Data Excel yang sudah rusak oleh Excel sendiri (NIK terpotong, nol di depan hilang) akan terbaca
+  sebagai nilai tidak valid.
 
 ## Alternatif
 
