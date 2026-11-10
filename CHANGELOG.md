@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Fixed
+
+- NIK province codes 91, 92, and 96 now follow the Kemendagri codes (Papua, Papua Barat, Papua Barat Daya).
+
 ## [0.3.0] - 2026-11-05
 
 ### Added
