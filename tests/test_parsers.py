@@ -88,3 +88,10 @@ def test_samarkan():
     assert samarkan_nik("3171011708900001") == "317101******0001"
     assert samarkan_nilai("081234567890") == "08********90"
     assert samarkan_nilai("abc") == "***"
+
+
+def test_info_nik_provinsi_papua():
+    # kode wilayah Kemendagri yang dipakai di NIK
+    assert info_nik("9171011708900001")["provinsi"] == "Papua"
+    assert info_nik("9271011708900001")["provinsi"] == "Papua Barat"
+    assert info_nik("9671011708900001")["provinsi"] == "Papua Barat Daya"
